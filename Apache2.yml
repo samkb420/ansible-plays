@@ -1,0 +1,19 @@
+---
+- name: Apache Server Book
+  hosts: Digital_ocean_servers
+  remote_user: root
+  become: true
+  tasks:
+    - name: Install Apache
+      apt:
+          name: apache2
+          state: latest
+    - name: Run Apache
+      service:
+              name: apache2
+              state: started
+    - name: Create content
+      copy:
+            content: "Testing Ansible On Digital Ocean"
+            dest: /var/www/html/index.html
+
